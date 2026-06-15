@@ -1,31 +1,55 @@
 import { Container } from "@/components/layout/container";
+import {
+  SectionShell,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/shared/section";
+
+const stats = [
+  { value: "5+", label: "Years Experience" },
+  { value: "20+", label: "Projects" },
+  { value: "10+", label: "Technologies" },
+  { value: "∞", label: "Passion" },
+];
 
 export function ExperienceSection() {
   return (
-    <section className="py-40">
+    <SectionShell id="experience" bordered>
       <Container>
-        <div className="grid gap-16 md:grid-cols-4">
-          <div>
-            <h3 className="text-7xl font-bold text-zinc-100">5+</h3>
-            <p className="mt-4 text-zinc-500">Years Experience</p>
-          </div>
+        <StaggerContainer className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {stats.map((stat) => (
+            <StaggerItem key={stat.label}>
+              <article className="group relative">
+                  <div
+                    aria-hidden
+                    className="
+                      absolute -top-3 left-0 h-px w-8
+                      bg-violet-600/0
+                      transition-all duration-500
+                      group-hover:w-12 group-hover:bg-violet-600
+                    "
+                  />
 
-          <div>
-            <h3 className="text-7xl font-bold text-zinc-100">20+</h3>
-            <p className="mt-4 text-zinc-500">Projects</p>
-          </div>
+                  <p
+                    className="
+                      text-[clamp(3rem,6vw,4.5rem)]
+                      font-semibold
+                      leading-none
+                      tracking-[-0.03em]
+                      text-zinc-100
+                    "
+                  >
+                    {stat.value}
+                  </p>
 
-          <div>
-            <h3 className="text-7xl font-bold text-zinc-100">10+</h3>
-            <p className="mt-4 text-zinc-500">Technologies</p>
-          </div>
-
-          <div>
-            <h3 className="text-7xl font-bold text-zinc-100">∞</h3>
-            <p className="mt-4 text-zinc-500">Passion</p>
-          </div>
-        </div>
+                  <p className="mt-4 text-sm uppercase tracking-[0.2em] text-zinc-500">
+                    {stat.label}
+                  </p>
+                </article>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </Container>
-    </section>
+    </SectionShell>
   );
 }

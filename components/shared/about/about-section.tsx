@@ -1,40 +1,67 @@
 import { Container } from "@/components/layout/container";
+import {
+  FadeIn,
+  SectionHeader,
+  SectionShell,
+} from "@/components/shared/section";
+
+const roles = ["Engineer.", "Artist.", "Educator."];
+
+const paragraphs = [
+  "I build, break, learn, and create.",
+  "From systems that scale to melodies that heal.",
+  "I believe in curiosity, discipline, and the beauty of craftsmanship.",
+];
 
 export function AboutSection() {
   return (
-    <section className="py-40">
+    <SectionShell id="about">
       <Container>
-        <div className="grid gap-20 lg:grid-cols-2">
-          <div>
-            <p className="mb-8 text-sm uppercase tracking-[0.3em] text-zinc-500">
-              About
-            </p>
+        <div className="grid items-start gap-16 lg:grid-cols-12 lg:gap-20">
+          <div className="lg:col-span-5">
+            <FadeIn>
+              <SectionHeader label="About" title={null} />
 
-            <h2 className="text-5xl font-bold leading-tight text-zinc-100 md:text-7xl">
-              Engineer.
-              <br />
-              Artist.
-              <br />
-              Educator.
-            </h2>
+              <div className="space-y-1">
+                {roles.map((role) => (
+                  <h2
+                    key={role}
+                    className="text-[clamp(2.5rem,5vw,4.25rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-zinc-100"
+                  >
+                    {role}
+                  </h2>
+                ))}
+              </div>
+            </FadeIn>
           </div>
 
-          <div className="space-y-8 text-lg leading-9 text-zinc-400">
-            <p>
-              I build, break, learn, and create.
-            </p>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <FadeIn delay={0.15}>
+              <div className="relative pl-0 lg:border-l lg:border-zinc-800/80 lg:pl-12">
+                <div
+                  aria-hidden
+                  className="absolute -left-px top-0 hidden h-12 w-px bg-violet-600 lg:block"
+                />
 
-            <p>
-              From systems that scale to melodies that heal.
-            </p>
+                <div className="space-y-8">
+                  {paragraphs.map((text) => (
+                    <p
+                      key={text}
+                      className="text-lg leading-[1.85] text-zinc-400 md:text-xl md:leading-9"
+                    >
+                      {text}
+                    </p>
+                  ))}
+                </div>
 
-            <p>
-              I believe in curiosity, discipline, and the beauty of
-              craftsmanship.
-            </p>
+                <p className="mt-12 text-sm uppercase tracking-[0.25em] text-zinc-600">
+                  Digital Atelier — Est. 2026
+                </p>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </Container>
-    </section>
+    </SectionShell>
   );
 }

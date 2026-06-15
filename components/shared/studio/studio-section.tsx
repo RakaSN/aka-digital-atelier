@@ -1,49 +1,92 @@
 import { Container } from "@/components/layout/container";
+import {
+  FadeIn,
+  SectionHeader,
+  SectionShell,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/shared/section";
+
+const genres = [
+  "Cinematic Metal",
+  "Progressive Metal",
+  "Hybrid Trap",
+  "Future Riddim",
+  "Color Bass",
+];
+
+const tools = [
+  "Odin III",
+  "Serum",
+  "Archetype Nolly",
+  "Mjolnir",
+  "Umansky Bass",
+];
+
+type StudioListProps = {
+  title: string;
+  items: string[];
+};
+
+function StudioList({ title, items }: StudioListProps) {
+  return (
+    <div>
+      <h3 className="mb-8 text-[11px] uppercase tracking-[0.35em] text-zinc-500">
+        {title}
+      </h3>
+
+      <ul className="space-y-5">
+        {items.map((item) => (
+          <li
+            key={item}
+            className="
+              text-[clamp(1.25rem,2.5vw,1.875rem)]
+              font-light
+              tracking-[-0.01em]
+              text-zinc-400
+              transition-colors
+              duration-300
+              hover:text-zinc-100
+            "
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function StudioSection() {
   return (
-    <section className="py-40">
+    <SectionShell id="studio" bordered>
       <Container>
-        <div className="mb-24">
-          <p className="mb-8 text-sm uppercase tracking-[0.3em] text-zinc-500">
-            Creative Studio
-          </p>
+        <FadeIn>
+          <SectionHeader
+            label="Creative Studio"
+            title={
+              <>
+                Composing emotions
+                <br />
+                <span className="text-zinc-400">through sound.</span>
+              </>
+            }
+            className="mb-16 md:mb-24"
+          />
+        </FadeIn>
 
-          <h2 className="max-w-4xl text-5xl font-bold text-zinc-100 md:text-7xl">
-            Composing emotions through sound.
-          </h2>
-        </div>
+        <StaggerContainer className="grid gap-16 lg:grid-cols-2 lg:gap-24">
+          <StaggerItem>
+            <StudioList title="Genres" items={genres} />
+          </StaggerItem>
 
-        <div className="grid gap-20 lg:grid-cols-2">
-          <div>
-            <h3 className="mb-8 text-2xl font-semibold text-zinc-100">
-              Genres
-            </h3>
-
-            <div className="space-y-6 text-3xl text-zinc-400">
-              <p>Cinematic Metal</p>
-              <p>Progressive Metal</p>
-              <p>Hybrid Trap</p>
-              <p>Future Riddim</p>
-              <p>Color Bass</p>
+          <StaggerItem>
+            <div className="lg:border-l lg:border-zinc-800/80 lg:pl-16">
+              <StudioList title="Tools" items={tools} />
             </div>
-          </div>
-
-          <div>
-            <h3 className="mb-8 text-2xl font-semibold text-zinc-100">
-              Tools
-            </h3>
-
-            <div className="space-y-6 text-3xl text-zinc-400">
-              <p>Odin III</p>
-              <p>Serum</p>
-              <p>Archetype Nolly</p>
-              <p>Mjolnir</p>
-              <p>Umansky Bass</p>
-            </div>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerContainer>
       </Container>
-    </section>
+    </SectionShell>
   );
 }

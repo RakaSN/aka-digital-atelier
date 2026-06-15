@@ -1,69 +1,97 @@
 import { Container } from "@/components/layout/container";
+import {
+  FadeIn,
+  SectionHeader,
+  SectionShell,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/shared/section";
+
+const works = [
+  {
+    index: "01",
+    title: "Portfolio Premium",
+    category: "Personal Brand Website",
+    year: "2026",
+  },
+  {
+    index: "02",
+    title: "School Website Premium",
+    category: "Digital Ecosystem",
+    year: "2025",
+  },
+  {
+    index: "03",
+    title: "Moodle Infrastructure",
+    category: "Learning Platform",
+    year: "2025",
+  },
+  {
+    index: "04",
+    title: "Linux & Server",
+    category: "Self-hosted Systems",
+    year: "2024",
+  },
+];
 
 export function WorksSection() {
   return (
-    <section className="py-40">
+    <SectionShell id="works">
       <Container>
-        <div className="mb-24">
-          <p className="mb-8 text-sm uppercase tracking-[0.3em] text-zinc-500">
-            Selected Works
-          </p>
+        <FadeIn>
+          <SectionHeader
+            label="Selected Works"
+            title="Building ideas into experiences."
+            className="mb-16 md:mb-24"
+          />
+        </FadeIn>
 
-          <h2 className="text-5xl font-bold text-zinc-100 md:text-7xl">
-            Building ideas into experiences.
-          </h2>
-        </div>
+        <StaggerContainer className="divide-y divide-zinc-800/80">
+          {works.map((work) => (
+            <StaggerItem key={work.index}>
+              <article
+                className="
+                  group
+                  grid
+                  gap-4
+                  py-10
+                  transition-colors
+                  duration-500
+                  hover:bg-zinc-900/20
+                  md:grid-cols-[4rem_1fr_auto]
+                  md:items-center
+                  md:gap-12
+                  md:py-12
+                "
+              >
+                <p className="font-mono text-xs tracking-wider text-zinc-600">
+                  {work.index}
+                </p>
 
-        <div className="space-y-16">
-          <div className="border-b border-zinc-800 pb-12">
-            <p className="mb-4 text-zinc-600">01</p>
+                <div>
+                  <h3
+                    className="
+                      text-[clamp(1.5rem,3vw,2.25rem)]
+                      font-medium
+                      tracking-[-0.02em]
+                      text-zinc-100
+                      transition-colors
+                      group-hover:text-white
+                    "
+                  >
+                    {work.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-zinc-500">{work.category}</p>
+                </div>
 
-            <h3 className="text-4xl font-semibold text-zinc-100">
-              Portfolio Premium
-            </h3>
-
-            <p className="mt-4 text-zinc-500">
-              Personal Brand Website
-            </p>
-          </div>
-
-          <div className="border-b border-zinc-800 pb-12">
-            <p className="mb-4 text-zinc-600">02</p>
-
-            <h3 className="text-4xl font-semibold text-zinc-100">
-              School Website Premium
-            </h3>
-
-            <p className="mt-4 text-zinc-500">
-              Digital Ecosystem
-            </p>
-          </div>
-
-          <div className="border-b border-zinc-800 pb-12">
-            <p className="mb-4 text-zinc-600">03</p>
-
-            <h3 className="text-4xl font-semibold text-zinc-100">
-              Moodle Infrastructure
-            </h3>
-
-            <p className="mt-4 text-zinc-500">
-              Learning Platform
-            </p>
-          </div>
-
-          <div className="pb-12">
-            <p className="mb-4 text-zinc-600">04</p>
-
-            <h3 className="text-4xl font-semibold text-zinc-100">
-              Linux & Server
-            </h3>
-
-            <p className="mt-4 text-zinc-500">
-              Self-hosted Systems
-            </p>
-          </div>
-        </div>
+                <p className="text-xs uppercase tracking-[0.2em] text-zinc-600 md:text-right">
+                  {work.year}
+                </p>
+              </article>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </Container>
-    </section>
+    </SectionShell>
   );
 }
